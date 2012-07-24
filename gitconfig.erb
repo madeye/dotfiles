@@ -1,0 +1,25 @@
+[user]
+	name = Max Lv
+	email = max.c.lv@gmail.com
+[alias]
+	co = checkout
+    st = status
+    ci = commit -a
+    co = checkout
+    pa = push --all
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	ui = auto
+[core]
+	excludesfile = <%= ENV['HOME'] %>/.gitignore
+	editor = mate -w
+	autocrlf = input
+[apply]
+	whitespace = nowarn
+[format]
+	pretty = %C(yellow)%h%Creset %s %C(red)(%an, %cr)%Creset
+[github]
+	user = <%= print("GitHub Username: "); STDOUT.flush; STDIN.gets.chomp %>
+	token = <%= print("GitHub API Token: "); STDOUT.flush; STDIN.gets.chomp %>
