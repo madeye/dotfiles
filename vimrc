@@ -36,6 +36,7 @@ set showtabline=2
 "set clipboard+=unnamed
 set tabpagemax=20
 set laststatus=2
+set backspace=indent,eol,start
 
 " make sure sytanx on
 if exists("syntax_on")
