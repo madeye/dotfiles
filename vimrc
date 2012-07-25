@@ -20,8 +20,8 @@ set noerrorbells
 set novisualbell
 set t_vb= "close visual bell
 set foldmethod=marker
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set nobackup
 set nowritebackup
 "set noswapfile
