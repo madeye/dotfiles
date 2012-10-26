@@ -5,7 +5,7 @@
 "  date: 2010-4-12
 "  Thanks to: feelinglucky<i.feelinglucky@gmail.com>
 "
-"  This configuration works well for  C, C++, CUDA and python 
+"  This configuration works well for  C, C++, CUDA and python
 
 set linebreak
 set textwidth=80
@@ -20,8 +20,8 @@ set noerrorbells
 set novisualbell
 set t_vb= "close visual bell
 set foldmethod=marker
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set nobackup
 set nowritebackup
 "set noswapfile
@@ -32,7 +32,7 @@ set cindent
 set wrap
 set autoread
 set cmdheight=1
-set showtabline=2 
+set showtabline=2
 "set clipboard+=unnamed
 set tabpagemax=20
 set laststatus=2
@@ -42,7 +42,7 @@ set backspace=indent,eol,start
 if exists("syntax_on")
     syntax reset
 else
-    syntax on 
+    syntax on
 endif
 
 winpos 100 100
@@ -70,7 +70,7 @@ if has("multi_byte")
         source $VIMRUNTIME/delmenu.vim
         source $VIMRUNTIME/menu.vim
         language messages zh_CN.utf-8
-    endif 
+    endif
 else
     echoerr "Sorry, this version of (g)vim was not compiled with +multi_byte"
 endif
@@ -161,13 +161,30 @@ imap jj <ESC>
 
 au BufNewFile,BufRead *.cu set filetype=cuda
 
-function! LoadCscope()
-  let db = findfile("cscope.out", ".;")
-  if (!empty(db))
-    let path = strpart(db, 0, match(db, "/cscope.out$"))
-    set nocscopeverbose " suppress 'duplicate connection' error
-    exe "cs add " . db . " " . path
-    set cscopeverbose
-  endif
-endfunction
-au BufEnter /* call LoadCscope()
+"copy and paste between vim instances
+vmap <silent> ,y y:new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/reg.txt<CR>
+nmap <silent> ,y :new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/reg.txt<CR>
+map <silent> ,p :sview ~/reg.txt<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>p
+map <silent> ,P :sview ~/reg.txt<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>P
+
+"function! LoadCscope()
+  "let db = findfile("cscope.out", ".;")
+  "if (!empty(db))
+    "let path = strpart(db, 0, match(db, "/cscope.out$"))
+    "set nocscopeverbose " suppress 'duplicate connection' error
+    "exe "cs add " . db . " " . path
+    "set cscopeverbose
+  "endif
+"endfunction
+"au BufEnter /* call LoadCscope()
+
+" Removes trailing spaces
+function TrimWhiteSpace()
+    %s/\s*$//
+    ''
+:endfunction
+
+set list listchars=trail:.,extends:>
+
+map <F2> :call TrimWhiteSpace()<CR>
+map! <F2> :call TrimWhiteSpace()<CR>
