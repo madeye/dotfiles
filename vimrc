@@ -184,8 +184,6 @@ function TrimWhiteSpace()
     ''
 :endfunction
 
-set list listchars=trail:.,extends:>
-
 map <F2> :call TrimWhiteSpace()<CR>
 map! <F2> :call TrimWhiteSpace()<CR>
 let g:ctrlp_map = '<c-p>'
