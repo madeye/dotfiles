@@ -45,7 +45,6 @@ else
     syntax on
 endif
 
-winpos 100 100
 filetype plugin on
 
 let g:pydiction_location = '~/.vim/after/ftplugin/complete-dict'
@@ -167,24 +166,11 @@ nmap <silent> ,y :new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/reg.txt<
 map <silent> ,p :sview ~/reg.txt<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>p
 map <silent> ,P :sview ~/reg.txt<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>P
 
-"function! LoadCscope()
-  "let db = findfile("cscope.out", ".;")
-  "if (!empty(db))
-    "let path = strpart(db, 0, match(db, "/cscope.out$"))
-    "set nocscopeverbose " suppress 'duplicate connection' error
-    "exe "cs add " . db . " " . path
-    "set cscopeverbose
-  "endif
-"endfunction
-"au BufEnter /* call LoadCscope()
-
 " Removes trailing spaces
 function TrimWhiteSpace()
     %s/\s*$//
     ''
 :endfunction
-
-set list listchars=trail:.,extends:>
 
 map <F2> :call TrimWhiteSpace()<CR>
 map! <F2> :call TrimWhiteSpace()<CR>
