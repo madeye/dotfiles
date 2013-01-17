@@ -82,13 +82,6 @@
 
 
 ;;----------------------------------------------------------------------------
-;; Variables configured via the interactive 'customize' interface
-;;----------------------------------------------------------------------------
-(setq custom-file "~/.emacs.d/custom.el")
-(load custom-file)
-
-
-;;----------------------------------------------------------------------------
 ;; Allow users to provide an optional "init-local" containing personal settings
 ;;----------------------------------------------------------------------------
 (require 'init-local)
