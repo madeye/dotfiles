@@ -1,0 +1,10 @@
+;;; Automatically generated on Thu Jan 17 18:12:37 2013
+;;; Invoked by max@ubuntu using 24.2.91.1
+(setq-default session-file-alist '(("~/.emacs.d/init-elpa.el" 2696 nil 1 nil nil 2696 (overwrite-mode)) ("~/.emacs.d/init-local.el" 204 nil 1 nil nil 204 (overwrite-mode)) ("~/.emacs.d/init.el" 2880 1 1 nil nil 2880 (overwrite-mode)) ("~/.emacs.d/custom.el" 276 nil 1 nil nil 276 (overwrite-mode)) ("~/workspace/shadowsocks-libev/local.c" 1 nil 1 nil nil 1 (overwrite-mode))))
+(setq-default file-name-history '("/home/max/.emacs.d/README.md" "~/.emacs.d/init-elpa.el" "~/.emacs.d/init-local.el" "~/.emacs.d/init.el" "~/.emacs.d/init-local" "~/.emacs.d/custom.el" "~/workspace/shadowsocks-libev/local.c" "~/workspace/shadowsocks-libev/local." "~/workspace/shadowsocks-libev/depcomp" "/usr/local/share/emacs/24.2.91/etc/HELLO"))
+(setq-default command-history '((find-file "/home/max/.emacs.d/README.md") (fci-mode (quote toggle)) (line-number-mode (quote toggle)) (wcy-display-line-number-on) (nlinum-mode (quote toggle)) (linum-mode (quote toggle))))
+(setq-default ido-file-history '("README.md"))
+(setq-default minibuffer-history '("fci-mode" "line-number-mode" "wcy-display-line-number-on" "display-line-number" "nlinum-mode" "nlium-mode" "linum-mode" "(require'install)"))
+(setq-default occur-collect-regexp-history '("\\1"))
+(setq-default smex-history '(line-number-mode fci-mode linum-mode goto-line cd 5x5 arp))
+(setq-default yes-or-no-p-history '("no" "yes"))
