@@ -10,6 +10,6 @@
 (require 'sr-speedbar)
 (menu-bar-mode -1)
 (global-linum-mode t)
-(setq linum-format "%3d \u2502")
+(setq linum-format "%3d  ")
 
 (provide 'init-local)
