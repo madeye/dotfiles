@@ -1,12 +1,46 @@
 "  Vim Configuration
 "
 "  author: Max(max.c.lv@gmail.com)
-"  website: http://www.madeye.cn
-"  date: 2010-4-12
+"  website: http://madeye.me
+"  date: 2013-2-5
 "  Thanks to: feelinglucky<i.feelinglucky@gmail.com>
 "
 "  This configuration works well for  C, C++, CUDA and python
 
+set nocompatible               " be iMproved
+filetype off                   " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+
+Bundle 'tpope/vim-fugitive'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'godlygeek/tabular'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'pangloss/vim-javascript'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'wavded/vim-stylus'
+Bundle 'scrooloose/nerdtree'
+Bundle 'ervandew/supertab'
+Bundle 'dandorman/vim-colors'
+Bundle 'jonathanfilip/vim-lucius'
+
+Bundle 'JavaScript-Indent'
+Bundle 'cudajinja.vim'
+Bundle 'taglist.vim'
+Bundle 'ctags.vim'
+Bundle 'c.vim'
+
+Bundle 'git://git.wincent.com/command-t.git'
+
+filetype plugin indent on     " required!
+
+" custom settings
 set linebreak
 set textwidth=80
 set nocompatible
@@ -24,7 +58,6 @@ set tabstop=4
 set shiftwidth=4
 set nobackup
 set nowritebackup
-"set noswapfile
 set smarttab
 set smartindent
 set autoindent
@@ -33,7 +66,6 @@ set wrap
 set autoread
 set cmdheight=1
 set showtabline=2
-"set clipboard+=unnamed
 set tabpagemax=20
 set laststatus=2
 set backspace=indent,eol,start
@@ -45,16 +77,14 @@ else
     syntax on
 endif
 
-filetype plugin on
-
-let g:pydiction_location = '~/.vim/after/ftplugin/complete-dict'
-
+" status line
 function! CurrectDir()
     let curdir = substitute(getcwd(), "", "", "g")
     return curdir
 endfunction
 set statusline=\ [File]\ %F%m%r%h\ %w\ \ [PWD]\ %r%{CurrectDir()}%h\ \ %=[Line]\ %l,%c\ %=\ %P
 
+" show Chinese characters correctly
 if has("multi_byte")
     set encoding=utf-8
     set termencoding=utf-8
@@ -74,6 +104,7 @@ else
     echoerr "Sorry, this version of (g)vim was not compiled with +multi_byte"
 endif
 
+" change fonts for GUI
 if has("win32")
     set guifont=Courier_New:h12:cANSI
     set guifontwide=YouYuan:h12:cGB2312
@@ -86,79 +117,78 @@ else
     set guifontwide=
 endif
 
-if has("autocmd")
-    filetype plugin indent on
-    augroup vimrcEx
-        au!
-        autocmd FileType text setlocal textwidth=78
-        autocmd BufReadPost *
-                    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-                    \   exe "normal g`\"" |
-                    \ endif
-    augroup END
+" autocmd reset
+augroup vimrcEx
+    au!
+    autocmd FileType text setlocal textwidth=78
+    autocmd BufReadPost *
+                \ if line("'\"") > 0 && line("'\"") <= line("$") |
+                \   exe "normal g`\"" |
+                \ endif
+augroup END
 
-    function! AutoClose()
-        :inoremap ( ()<ESC>i
-        :inoremap " ""<ESC>i
-        :inoremap ' ''<ESC>i
-        :inoremap { {}<ESC>i
-        :inoremap [ []<ESC>i
-        :inoremap ) <c-r>=ClosePair(')')<CR>
-        :inoremap } <c-r>=ClosePair('}')<CR>
-        :inoremap ] <c-r>=ClosePair(']')<CR>
-    endf
+" helper functions for auto closing
+function! AutoClose()
+    :inoremap ( ()<ESC>i
+    :inoremap " ""<ESC>i
+    :inoremap ' ''<ESC>i
+    :inoremap { {}<ESC>i
+    :inoremap [ []<ESC>i
+    :inoremap ) <c-r>=ClosePair(')')<CR>
+    :inoremap } <c-r>=ClosePair('}')<CR>
+    :inoremap ] <c-r>=ClosePair(']')<CR>
+endf
 
-    function! ClosePair(char)
-        if getline('.')[col('.') - 1] == a:char
-            return "\<Right>"
-        else
-            return a:char
-        endif
-    endf
+function! ClosePair(char)
+    if getline('.')[col('.') - 1] == a:char
+        return "\<Right>"
+    else
+        return a:char
+    endif
+endf
 
-    "auto close for PHP and Javascript script
-    au FileType php,c,python,javascript exe AutoClose()
+" auto close for PHP and Javascript script
+au FileType php,c,python,javascript exe AutoClose()
+
+" restore position
+au BufWinLeave * mkview
+au BufWinEnter * silent loadview
+
+" cuda settings
+au BufNewFile,BufRead *.cu set filetype=cuda
+
+" color scheme
+set t_Co=256
+let g:lucius_style='dark'
+colorscheme lucius
+
+" cscope settings
+if has('cscope')
+    set cscopetag cscopeverbose
+    if has('quickfix')
+        set cscopequickfix=s-,c-,d-,i-,t-,e-
+    endif
+    cnoreabbrev csa cs add
+    cnoreabbrev csf cs find
+    cnoreabbrev csk cs kill
+    cnoreabbrev csr cs reset
+    cnoreabbrev css cs show
+    cnoreabbrev csh cs help
 endif
 
 " key stock
 map tn :tabnext<cr>
 map tp :tabprevious<cr>
 
-"map td :tabnew .<cr>
-map td :NERDTree <cr>
+map tc :tabnew .<cr>
+map tt :NERDTree <cr>
 
 map te :tabedit
-map tc :tabclose<cr>
+map td :tabclose<cr>
 map cs :!php -l %<cr>
-"map bf :BufExplorer<cr>
-
-set t_Co=256
-let g:solarized_termtrans = 0
-let g:solarized_termcolors = 256
-let g:solarized_contrast = "high"
-let g:solarized_degrade = 1
-set background=dark
-colorscheme solarized
-
-if has('cscope')
-  set cscopetag cscopeverbose
-
-  if has('quickfix')
-    set cscopequickfix=s-,c-,d-,i-,t-,e-
-  endif
-
-  cnoreabbrev csa cs add
-  cnoreabbrev csf cs find
-  cnoreabbrev csk cs kill
-  cnoreabbrev csr cs reset
-  cnoreabbrev css cs show
-  cnoreabbrev csh cs help
-
-endif
+map bf :BufExplorer<cr>
 
 imap jj <ESC>
-
-au BufNewFile,BufRead *.cu set filetype=cuda
 
 "copy and paste between vim instances
 vmap <silent> ,y y:new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/reg.txt<CR>
@@ -170,8 +200,7 @@ map <silent> ,P :sview ~/reg.txt<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>P
 function TrimWhiteSpace()
     %s/\s*$//
     ''
-:endfunction
+    :endfunction
 
-map <F2> :call TrimWhiteSpace()<CR>
-map! <F2> :call TrimWhiteSpace()<CR>
-let g:ctrlp_map = '<c-p>'
+map <c-p> :call TrimWhiteSpace()<CR>
+map! <c-p> :call TrimWhiteSpace()<CR>
