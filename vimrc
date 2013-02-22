@@ -10,6 +10,7 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
+set shell=/bin/bash
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
