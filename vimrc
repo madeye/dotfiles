@@ -36,6 +36,7 @@ Bundle 'derekwyatt/vim-scala'
 Bundle 'othree/html5.vim.git'
 Bundle 'gre/play2vim'
 Bundle 'kien/ctrlp.vim'
+Bundle 'terryma/vim-multiple-cursors'
 
 Bundle 'JavaScript-Indent'
 Bundle 'cudajinja.vim'
