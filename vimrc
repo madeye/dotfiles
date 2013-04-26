@@ -21,7 +21,9 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'godlygeek/tabular'
-Bundle 'scrooloose/nerdcommenter'
+Bundle 'Raimondi/delimitMate'
+Bundle 'tomtom/tcomment_vim'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'digitaltoad/vim-jade'
@@ -33,14 +35,13 @@ Bundle 'jonathanfilip/vim-lucius'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'othree/html5.vim.git'
 Bundle 'gre/play2vim'
+Bundle 'kien/ctrlp.vim'
 
 Bundle 'JavaScript-Indent'
 Bundle 'cudajinja.vim'
 Bundle 'taglist.vim'
 Bundle 'ctags.vim'
 Bundle 'c.vim'
-
-Bundle 'git://git.wincent.com/command-t.git'
 
 filetype plugin indent on     " required!
 
@@ -179,6 +180,15 @@ if has('cscope')
     cnoreabbrev css cs show
     cnoreabbrev csh cs help
 endif
+
+" CtrP
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 " key stock
 map tn :tabnext<cr>
