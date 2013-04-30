@@ -76,6 +76,11 @@ set tabpagemax=20
 set laststatus=2
 set backspace=indent,eol,start
 
+" YouCompleteMe
+let g:ycm_key_list_select_completion=['<Tab>']
+let g:ycm_key_list_previous_completion=['<S-Tab>']
+let g:ycm_key_invoke_completion=''
+
 " make sure sytanx on
 if exists("syntax_on")
     syntax reset
@@ -132,29 +137,6 @@ augroup vimrcEx
                 \   exe "normal g`\"" |
                 \ endif
 augroup END
-
-" helper functions for auto closing
-function! AutoClose()
-    :inoremap ( ()<ESC>i
-    :inoremap " ""<ESC>i
-    :inoremap ' ''<ESC>i
-    :inoremap { {}<ESC>i
-    :inoremap [ []<ESC>i
-    :inoremap ) <c-r>=ClosePair(')')<CR>
-    :inoremap } <c-r>=ClosePair('}')<CR>
-    :inoremap ] <c-r>=ClosePair(']')<CR>
-endf
-
-function! ClosePair(char)
-    if getline('.')[col('.') - 1] == a:char
-        return "\<Right>"
-    else
-        return a:char
-    endif
-endf
-
-" auto close for PHP and Javascript script
-au FileType php,c,python,javascript exe AutoClose()
 
 " restore position
 au BufWinLeave * mkview
