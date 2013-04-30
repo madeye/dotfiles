@@ -80,7 +80,7 @@ set backspace=indent,eol,start
 let g:ycm_key_list_select_completion=['<Tab>']
 let g:ycm_key_list_previous_completion=['<S-Tab>']
 let g:ycm_key_invoke_completion=''
-let g:ycm_confirm_extra_conf=1
+let g:ycm_confirm_extra_conf=0
 
 " make sure sytanx on
 if exists("syntax_on")
