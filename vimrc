@@ -23,7 +23,7 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'godlygeek/tabular'
 Bundle 'Raimondi/delimitMate'
 Bundle 'tomtom/tcomment_vim'
-Bundle 'Valloric/YouCompleteMe'
+" Bundle 'Valloric/YouCompleteMe'
 Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'digitaltoad/vim-jade'
@@ -37,6 +37,7 @@ Bundle 'othree/html5.vim.git'
 Bundle 'gre/play2vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'terryma/vim-multiple-cursors'
+Bundle 'petRUShka/vim-opencl'
 
 Bundle 'JavaScript-Indent'
 Bundle 'cudajinja.vim'
@@ -138,6 +139,8 @@ augroup vimrcEx
                 \   exe "normal g`\"" |
                 \ endif
 augroup END
+
+autocmd BufWritePre *.c :%s/\s\+$//e
 
 " restore position
 au BufWinLeave * mkview
