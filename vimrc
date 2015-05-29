@@ -12,44 +12,46 @@ filetype off                   " required!
 
 set shell=/bin/bash
 set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call vundle#begin()
 
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'godlygeek/tabular'
-Bundle 'Raimondi/delimitMate'
-Bundle 'tomtom/tcomment_vim'
-" Bundle 'Valloric/YouCompleteMe'
-Bundle 'pangloss/vim-javascript'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'wavded/vim-stylus'
-Bundle 'scrooloose/nerdtree'
-Bundle 'ervandew/supertab'
-Bundle 'dandorman/vim-colors'
-Bundle 'jonathanfilip/vim-lucius'
-Bundle 'derekwyatt/vim-scala'
-Bundle 'othree/html5.vim.git'
-Bundle 'gre/play2vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'petRUShka/vim-opencl'
+Plugin 'tpope/vim-fugitive'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'godlygeek/tabular'
+Plugin 'Raimondi/delimitMate'
+Plugin 'tomtom/tcomment_vim'
+" Plugin 'Valloric/YouCompleteMe'
+Plugin 'pangloss/vim-javascript'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'wavded/vim-stylus'
+Plugin 'scrooloose/nerdtree'
+Plugin 'ervandew/supertab'
+Plugin 'dandorman/vim-colors'
+Plugin 'jonathanfilip/vim-lucius'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'othree/html5.vim.git'
+Plugin 'gre/play2vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'petRUShka/vim-opencl'
 
-Bundle 'JavaScript-Indent'
-Bundle 'cudajinja.vim'
-Bundle 'taglist.vim'
-Bundle 'ctags.vim'
-Bundle 'c.vim'
+Plugin 'JavaScript-Indent'
+Plugin 'cudajinja.vim'
+Plugin 'taglist.vim'
+Plugin 'ctags.vim'
+Plugin 'c.vim'
+
+call vundle#end()            " required"
 
 filetype plugin indent on     " required!
 
 " custom settings
 set linebreak
-set textwidth=80
+set textwidth=120
 set nocompatible
 set history=400
 set ruler
@@ -76,6 +78,11 @@ set showtabline=2
 set tabpagemax=20
 set laststatus=2
 set backspace=indent,eol,start
+
+" highlight trailing spaces
+let c_space_errors = 1
+let java_space_errors = 1
+let python_space_errors = 1
 
 " YouCompleteMe
 let g:ycm_key_list_select_completion=['<Tab>']
@@ -205,3 +212,13 @@ function TrimWhiteSpace()
 
 map <c-p> :call TrimWhiteSpace()<CR>
 map! <c-p> :call TrimWhiteSpace()<CR>
+
+" Gif config
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
+" " These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
+" " Without these mappings, `n` & `N` works fine. (These mappings just provide
+" " different highlight method and have some other features )
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
