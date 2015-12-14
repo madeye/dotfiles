@@ -11,12 +11,12 @@ set nocompatible               " be iMproved
 filetype off                   " required!
 
 set shell=/bin/bash
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle
 " required!
-Plugin 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/vim-easymotion'
@@ -38,6 +38,7 @@ Plugin 'gre/play2vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'petRUShka/vim-opencl'
+Plugin 'junegunn/vim-easy-align'
 
 Plugin 'JavaScript-Indent'
 Plugin 'cudajinja.vim'
