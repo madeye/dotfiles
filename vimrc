@@ -39,6 +39,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'petRUShka/vim-opencl'
 Plugin 'junegunn/vim-easy-align'
+Plugin 'ntpeters/vim-better-whitespace'
 
 Plugin 'JavaScript-Indent'
 Plugin 'cudajinja.vim'
@@ -221,5 +222,5 @@ omap / <Plug>(easymotion-tn)
 " " These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
 " " Without these mappings, `n` & `N` works fine. (These mappings just provide
 " " different highlight method and have some other features )
-map  n <Plug>(easymotion-next)
-map  N <Plug>(easymotion-prev)
+" map  n <Plug>(easymotion-next)
+" map  N <Plug>(easymotion-prev)
