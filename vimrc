@@ -18,6 +18,8 @@ call vundle#begin()
 " required!
 Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'tpope/vim-repeat'
+Plugin 'svermeulen/vim-easyclip'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'godlygeek/tabular'
@@ -91,6 +93,9 @@ let g:ycm_key_list_select_completion=['<Tab>']
 let g:ycm_key_list_previous_completion=['<S-Tab>']
 let g:ycm_key_invoke_completion=''
 let g:ycm_confirm_extra_conf=0
+
+" EasyClip
+let g:EasyClipShareYanks=1
 
 " make sure sytanx on
 if exists("syntax_on")
@@ -224,3 +229,43 @@ omap / <Plug>(easymotion-tn)
 " " different highlight method and have some other features )
 " map  n <Plug>(easymotion-next)
 " map  N <Plug>(easymotion-prev)
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign))
+
+" Perforce-related commands
+function! P4(command)
+    execute "!p4 " . a:command . ' %'
+    call feedkeys("\<CR>")
+    edit
+    call feedkeys("\<CR>")
+endfunction
+nmap gpa :call P4('add')<CR><CR>
+nmap gpe :call P4('edit')<CR><CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" cscope setting
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has("cscope")
+    set csprg=/usr/bin/cscope
+    set csto=1
+    set cst
+    set nocsverb
+    " add any database in current directory
+    if filereadable("cscope.out")
+        cs add cscope.out
+    endif
+    set csverb
+endif
+
+nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>"
